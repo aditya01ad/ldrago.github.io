@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LDRAGO // HOME</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cyan: #00f5ff;
+    --purple: #7b2fff;
+    --green: #00ff9d;
+    --red: #ff2d55;
+    --yellow: #ffd60a;
+    --orange: #ff6b35;
+    --pink: #ff2d8f;
+    --bg: #050810;
+    --surface: rgba(255,255,255,0.03);
+    --border: rgba(0,245,255,0.12);
+    --text: #c8d8e8;
+    --dim: rgba(200,216,232,0.38);
+  }
+
+  html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'Rajdhani', sans-serif; overflow: hidden; }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      linear-gradient(rgba(0,245,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,245,255,0.035) 1px, transparent 1px);
+    background-size: 36px 36px;
+    animation: gridMove 24s linear infinite;
+    pointer-events: none; z-index: 0;
+  }
+  @keyframes gridMove { from { background-position: 0 0; } to { background-position: 36px 36px; } }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+    pointer-events: none; z-index: 100;
+  }
+
+  .orb { position: fixed; border-radius: 50%; filter: blur(90px); opacity: 0.1; pointer-events: none; z-index: 0; animation: drift 14s ease-in-out infinite alternate; }
+  .orb-1 { width: 380px; height: 380px; background: var(--cyan); top: -120px; left: -80px; }
+  .orb-2 { width: 300px; height: 300px; background: var(--purple); bottom: -60px; right: -60px; animation-delay: -5s; }
+  .orb-3 { width: 180px; height: 180px; background: var(--green); top: 45%; left: 55%; animation-delay: -9s; opacity: 0.07; }
+  @keyframes drift { from { transform: translate(0,0); } to { transform: translate(25px,18px); } }
+
+  .wrapper {
+    position: relative; z-index: 1;
+    height: 100vh;
+    display: flex; flex-direction: column;
+    padding: 16px 20px 12px;
+    gap: 10px;
+    overflow: hidden;
+  }
+
+  /* ── Header ── */
+  header {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    flex-shrink: 0;
+    animation: fadeDown 0.5s ease both;
+  }
+  .user-label { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--cyan); letter-spacing: 3px; opacity: 0.65; }
+  .user-name {
+    font-family: 'Orbitron', monospace; font-size: 24px; font-weight: 900; letter-spacing: 4px;
+    background: linear-gradient(135deg, var(--cyan), var(--purple));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    line-height: 1.1;
+  }
+  .user-name:hover { animation: glitch 0.3s ease; }
+  @keyframes glitch {
+    0%{transform:translate(0)}20%{transform:translate(-2px,1px)}40%{transform:translate(2px,-1px)}60%{transform:translate(-1px,0)}80%{transform:translate(1px,1px)}100%{transform:translate(0)}
+  }
+  .clock-block { text-align: right; }
+  #time { font-family: 'Orbitron', monospace; font-size: 20px; font-weight: 700; color: var(--cyan); letter-spacing: 2px; }
+  #date { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: var(--dim); letter-spacing: 2px; margin-top: 2px; }
+
+  /* ── Divider ── */
+  .divider { height: 1px; background: linear-gradient(90deg, var(--cyan), var(--purple), transparent); opacity: 0.35; flex-shrink: 0; animation: fadeIn 0.7s ease both 0.15s; }
+
+  /* ── Scrollable sections ── */
+  .sections { display: flex; flex-direction: column; gap: 10px; flex: 1; overflow-y: auto; overflow-x: hidden; padding-right: 2px; }
+  .sections::-webkit-scrollbar { width: 2px; }
+  .sections::-webkit-scrollbar-track { background: transparent; }
+  .sections::-webkit-scrollbar-thumb { background: rgba(0,245,255,0.2); border-radius: 2px; }
+
+  /* ── Section ── */
+  .section { animation: fadeUp 0.45s ease both; }
+  .section:nth-child(1){animation-delay:.15s}.section:nth-child(2){animation-delay:.25s}
+  .section:nth-child(3){animation-delay:.35s}.section:nth-child(4){animation-delay:.45s}
+  .section:nth-child(5){animation-delay:.55s}
+
+  .section-header { display: flex; align-items: center; gap: 8px; margin-bottom: 7px; }
+  .section-label { font-family: 'Share Tech Mono', monospace; font-size: 8px; letter-spacing: 3px; text-transform: uppercase; color: var(--dim); white-space: nowrap; }
+  .section-line { flex: 1; height: 1px; background: var(--border); }
+  .section-tag { font-family: 'Share Tech Mono', monospace; font-size: 7px; color: var(--cyan); background: rgba(0,245,255,0.07); border: 1px solid rgba(0,245,255,0.18); padding: 1px 5px; border-radius: 2px; white-space: nowrap; }
+
+  /* ── Grids ── */
+  .links-grid { display: grid; gap: 7px; }
+  .cols-4 { grid-template-columns: repeat(4,1fr); }
+  .cols-3 { grid-template-columns: repeat(3,1fr); }
+  .cols-2 { grid-template-columns: repeat(2,1fr); }
+
+  /* ── Card ── */
+  .link-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 8px 9px;
+    text-decoration: none;
+    display: flex; align-items: center; gap: 7px;
+    position: relative; overflow: hidden;
+    cursor: pointer;
+    transition: border-color .2s, background .2s, transform .15s;
+    user-select: none;
+  }
+  .link-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(0,245,255,0.06),transparent); opacity:0; transition:opacity .2s; }
+  .link-card:hover { border-color: var(--cyan); background: rgba(0,245,255,0.055); transform: translateY(-1px); }
+  .link-card:hover::before { opacity:1; }
+  .link-card:active { transform: translateY(0); }
+
+  .link-icon { font-size: 14px; flex-shrink: 0; filter: drop-shadow(0 0 5px currentColor); }
+  .link-info { min-width: 0; }
+  .link-name { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 11px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.4px; }
+  .link-url { font-family: 'Share Tech Mono', monospace; font-size: 7px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* accent colours */
+  .ac { color: var(--cyan); }
+  .ap { color: var(--purple); }
+  .ag { color: var(--green); }
+  .ar { color: var(--red); }
+  .ay { color: var(--yellow); }
+  .ao { color: var(--orange); }
+  .ak { color: var(--pink); }
+
+  /* ── Status bar ── */
+  .statusbar { display:flex; align-items:center; justify-content:space-between; flex-shrink:0; padding-top:3px; animation:fadeIn .8s ease both .9s; }
+  .status-txt { font-family:'Share Tech Mono',monospace; font-size:7px; color:rgba(0,245,255,0.28); letter-spacing:2px; }
+  .dot { display:inline-block; width:4px; height:4px; border-radius:50%; background:var(--green); box-shadow:0 0 5px var(--green); animation:pulse 2s ease-in-out infinite; margin-right:4px; }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+  @keyframes fadeDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<div class="wrapper">
+
+  <!-- Header -->
+  <header>
+    <div>
+      <div class="user-label">// operator</div>
+      <div class="user-name">LDRAGO</div>
+    </div>
+    <div class="clock-block">
+      <div id="time">--:--:--</div>
+      <div id="date">--- -- ----</div>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <div class="sections">
+
+    <!-- AI -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-label">AI</span>
+        <div class="section-line"></div>
+        <span class="section-tag">NEURAL</span>
+      </div>
+      <div class="links-grid cols-3">
+        <a class="link-card" href="https://claude.ai">
+          <span class="link-icon ac">◆</span>
+          <div class="link-info"><div class="link-name">Claude</div><div class="link-url">claude.ai</div></div>
+        </a>
+        <a class="link-card" href="https://chatgpt.com/">
+          <span class="link-icon ag">◎</span>
+          <div class="link-info"><div class="link-name">ChatGPT</div><div class="link-url">chatgpt.com</div></div>
+        </a>
+        <a class="link-card" href="https://tutorai.me/">
+          <span class="link-icon ap">⟡</span>
+          <div class="link-info"><div class="link-name">Tutor AI</div><div class="link-url">tutorai.me</div></div>
+        </a>
+        <a class="link-card" href="https://soloist.ai/">
+          <span class="link-icon ay">✦</span>
+          <div class="link-info"><div class="link-name">Soloist AI</div><div class="link-url">soloist.ai</div></div>
+        </a>
+        <a class="link-card" href="https://scholar.google.com/">
+          <span class="link-icon ac">◈</span>
+          <div class="link-info"><div class="link-name">Google Scholar</div><div class="link-url">scholar.google.com</div></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Learn -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-label">Learn</span>
+        <div class="section-line"></div>
+        <span class="section-tag">KNOWLEDGE</span>
+      </div>
+      <div class="links-grid cols-3">
+        <a class="link-card" href="https://developer.mozilla.org/en-US/">
+          <span class="link-icon ac">◉</span>
+          <div class="link-info"><div class="link-name">MDN Docs</div><div class="link-url">developer.mozilla.org</div></div>
+        </a>
+        <a class="link-card" href="https://www.geeksforgeeks.org/">
+          <span class="link-icon ag">⬡</span>
+          <div class="link-info"><div class="link-name">GeeksforGeeks</div><div class="link-url">geeksforgeeks.org</div></div>
+        </a>
+        <a class="link-card" href="https://quickref.me/index.html">
+          <span class="link-icon ay">▣</span>
+          <div class="link-info"><div class="link-name">QuickRef</div><div class="link-url">quickref.me</div></div>
+        </a>
+        <a class="link-card" href="https://www.edx.org/become">
+          <span class="link-icon ap">▲</span>
+          <div class="link-info"><div class="link-name">edX</div><div class="link-url">edx.org</div></div>
+        </a>
+        <a class="link-card" href="https://www.educative.io/search">
+          <span class="link-icon ao">◧</span>
+          <div class="link-info"><div class="link-name">Educative</div><div class="link-url">educative.io</div></div>
+        </a>
+        <a class="link-card" href="https://grow.google/intl/en_in/learn-skills/">
+          <span class="link-icon ag">◆</span>
+          <div class="link-info"><div class="link-name">Grow w/ Google</div><div class="link-url">grow.google</div></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Apps -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-label">Apps</span>
+        <div class="section-line"></div>
+        <span class="section-tag">TOOLS</span>
+      </div>
+      <div class="links-grid cols-4">
+        <a class="link-card" href="https://github.com/">
+          <span class="link-icon ac">⬡</span>
+          <div class="link-info"><div class="link-name">GitHub</div><div class="link-url">github.com</div></div>
+        </a>
+        <a class="link-card" href="https://cloud.digitalocean.com/projects/14740931-d2be-4aa7-b2e7-ec9c1835440a/resources?i=9767fc">
+          <span class="link-icon ac">◎</span>
+          <div class="link-info"><div class="link-name">DigitalOcean</div><div class="link-url">cloud.digitalocean.com</div></div>
+        </a>
+        <a class="link-card" href="https://www.codedex.io/daily-challenge">
+          <span class="link-icon ap">◈</span>
+          <div class="link-info"><div class="link-name">Codédex</div><div class="link-url">codedex.io</div></div>
+        </a>
+        <a class="link-card" href="https://www.algoexpert.io/github-students">
+          <span class="link-icon ag">⟡</span>
+          <div class="link-info"><div class="link-name">AlgoExpert</div><div class="link-url">algoexpert.io</div></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- GitHub Education -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-label">GitHub Education</span>
+        <div class="section-line"></div>
+        <span class="section-tag">STUDENT</span>
+      </div>
+      <div class="links-grid cols-3">
+        <a class="link-card" href="https://github.com/education">
+          <span class="link-icon ac">◆</span>
+          <div class="link-info"><div class="link-name">GH Education</div><div class="link-url">github.com/education</div></div>
+        </a>
+        <a class="link-card" href="https://education.github.com/learner/learn">
+          <span class="link-icon ag">▣</span>
+          <div class="link-info"><div class="link-name">Learner Hub</div><div class="link-url">education.github.com</div></div>
+        </a>
+        <a class="link-card" href="https://education.github.com/pack?sort=popularity&tag=Productivity">
+          <span class="link-icon ay">✦</span>
+          <div class="link-info"><div class="link-name">Dev Pack</div><div class="link-url">Student Pack</div></div>
+        </a>
+        <a class="link-card" href="https://www.interviewcake.com/github-students">
+          <span class="link-icon ao">◉</span>
+          <div class="link-info"><div class="link-name">Interview Cake</div><div class="link-url">interviewcake.com</div></div>
+        </a>
+        <a class="link-card" href="https://theroundpie.com/roundpie-timer-for-students.html">
+          <span class="link-icon ap">◧</span>
+          <div class="link-info"><div class="link-name">RoundPie</div><div class="link-url">theroundpie.com</div></div>
+        </a>
+      </div>
+    </div>
+
+    <!-- Extra -->
+    <div class="section">
+      <div class="section-header">
+        <span class="section-label">Extra</span>
+        <div class="section-line"></div>
+        <span class="section-tag">MISC</span>
+      </div>
+      <div class="links-grid cols-3">
+        <a class="link-card" href="https://m.youtube.com/">
+          <span class="link-icon ar">▶</span>
+          <div class="link-info"><div class="link-name">YouTube</div><div class="link-url">youtube.com</div></div>
+        </a>
+        <a class="link-card" href="https://www.kadaza.com/">
+          <span class="link-icon ac">◈</span>
+          <div class="link-info"><div class="link-name">Kadaza</div><div class="link-url">kadaza.com</div></div>
+        </a>
+        <a class="link-card" href="https://www.protopage.com/">
+          <span class="link-icon ag">⬡</span>
+          <div class="link-info"><div class="link-name">Protopage</div><div class="link-url">protopage.com</div></div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Status bar -->
+  <div class="statusbar">
+    <div class="status-txt"><span class="dot"></span>SYS ONLINE // LDRAGO_HOME v2.0</div>
+    <div class="status-txt">FIREFOX // ANDROID</div>
+  </div>
+
+</div>
+
+<script>
+  function updateClock() {
+    const now = new Date();
+    const pad = n => String(n).padStart(2,'0');
+    document.getElementById('time').textContent = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    const days = ['SUN','MON','TUE','WED','THU','FRI','SAT'];
+    const months = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    document.getElementById('date').textContent = `${days[now.getDay()]} ${months[now.getMonth()]} ${pad(now.getDate())} ${now.getFullYear()}`;
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+</script>
+</body>
+</html>
