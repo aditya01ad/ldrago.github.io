@@ -113,6 +113,7 @@
     border: 1px solid var(--border);
     border-radius: 5px;
     padding: 8px 9px;
+    min-height: 44px;
     text-decoration: none;
     display: flex; align-items: center; gap: 7px;
     position: relative; overflow: hidden;
@@ -127,7 +128,7 @@
 
   .link-icon { font-size: 14px; flex-shrink: 0; filter: drop-shadow(0 0 5px currentColor); }
   .link-info { min-width: 0; }
-  .link-name { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 11px; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; letter-spacing: 0.4px; }
+  .link-name { font-family: 'Rajdhani', sans-serif; font-weight: 600; font-size: 11px; color: var(--text); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; white-space: normal; line-height: 1.25; letter-spacing: 0.4px; }
   .link-url { font-family: 'Share Tech Mono', monospace; font-size: 7px; color: var(--dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
   /* accent colours */
@@ -208,10 +209,14 @@
         <div class="section-line"></div>
         <span class="section-tag">NEURAL</span>
       </div>
-      <div class="links-grid cols-2">
+      <div class="links-grid cols-3">
         <a class="link-card" href="https://chatgpt.com/">
           <span class="link-icon ag">◎</span>
           <div class="link-info"><div class="link-name">ChatGPT</div><div class="link-url">chatgpt.com</div></div>
+        </a>
+        <a class="link-card" href="https://gemini.google.com/">
+          <span class="link-icon ay">✦</span>
+          <div class="link-info"><div class="link-name">Gemini</div><div class="link-url">gemini.google.com</div></div>
         </a>
         <a class="link-card" href="https://www.perplexity.ai/">
           <span class="link-icon ak">⟡</span>
