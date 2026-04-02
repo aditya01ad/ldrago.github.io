@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f5ff"/>
+      <stop offset="100%" stop-color="#7b2fff"/>
+    </linearGradient>
+  </defs>
+  <!-- Horn -->
+  <polyline points="12,11 16,3 19,9" fill="none" stroke="url(#g)" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Head -->
+  <path d="M5,15 L12,11 L22,11 L27,16 L27,21 L20,26 L10,26 L5,21 Z" fill="#050810" stroke="url(#g)" stroke-width="1.5"/>
+  <!-- Snout -->
+  <path d="M22,17 L31,15 L31,20 L22,20" fill="#050810" stroke="url(#g)" stroke-width="1.2"/>
+  <!-- Nostril -->
+  <circle cx="29" cy="17" r="1" fill="#00f5ff"/>
+  <!-- Eye -->
+  <polygon points="13,16 16,13 19,16 16,19" fill="#00f5ff"/>
+</svg>
