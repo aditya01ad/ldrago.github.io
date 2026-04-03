@@ -1,37 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
   <defs>
-    <style>
-      .cyan-line { stroke: #00f5ff; stroke-width: 1.5; stroke-linejoin: round; fill: #050810; }
-      .cyan-detail { stroke: #00f5ff; stroke-width: 1; fill: none; stroke-linejoin: round; }
-      .red-line { stroke: #ff003c; stroke-width: 1.5; stroke-linejoin: round; fill: #050810; }
-      .red-detail { stroke: #ff003c; stroke-width: 1; fill: none; }
-      .red-fill { fill: #ff003c; }
-      .cyan-fill { fill: #00f5ff; }
-    </style>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f5ff"/>
+      <stop offset="100%" stop-color="#7b2fff"/>
+    </linearGradient>
   </defs>
-
-  <polygon points="35,35 20,5 42,22" class="red-line"/>
-  <polyline points="20,5 30,20 40,25" class="red-detail"/>
-
-  <polygon points="45,28 35,2 54,20" class="red-line"/>
-  <polyline points="35,2 45,15 50,25" class="red-detail"/>
-
-  <path d="M 45 28 L 65 40 L 85 52 L 95 60 L 92 70 L 82 72 L 78 66 L 72 70 L 68 64 L 60 70 L 52 62 L 45 80 L 25 95 L 15 80 L 22 75 L 18 60 L 28 55 L 25 40 L 35 35 Z" class="cyan-line"/>
-
-  <polyline points="45,28 50,42 65,40" class="cyan-detail"/>
-  <polyline points="50,42 55,55 75,58" class="cyan-detail"/>
-  <polyline points="25,40 38,50 42,65" class="cyan-detail"/>
-  <polyline points="28,55 35,60 30,75" class="cyan-detail"/>
-  <polyline points="60,70 65,60 70,62" class="cyan-detail"/>
-  
-  <circle cx="42" cy="65" r="1.5" class="cyan-fill"/>
-  <circle cx="75" cy="58" r="1.5" class="cyan-fill"/>
-  <circle cx="30" cy="75" r="1.5" class="cyan-fill"/>
-
-  <polygon points="56,44 60,41 64,44 60,47" class="red-fill"/>
-  <polygon points="61,48 64,46 67,48 64,51" class="red-fill"/>
-  <polygon points="53,48 56,46 59,48 56,51" class="red-fill"/>
-
-  <circle cx="86" cy="61" r="1.5" class="cyan-fill"/>
-  <polygon points="82,58 90,58 86,65" class="cyan-detail"/>
+  <!-- Horn -->
+  <polyline points="12,11 16,3 19,9" fill="none" stroke="url(#g)" stroke-width="1.5" stroke-linejoin="round"/>
+  <!-- Head -->
+  <path d="M5,15 L12,11 L22,11 L27,16 L27,21 L20,26 L10,26 L5,21 Z" fill="#050810" stroke="url(#g)" stroke-width="1.5"/>
+  <!-- Snout -->
+  <path d="M22,17 L31,15 L31,20 L22,20" fill="#050810" stroke="url(#g)" stroke-width="1.2"/>
+  <!-- Nostril 
+  <circle cx="29" cy="17" r="1" fill="#00f5ff"/> -->
+  <!-- Eye -->
+  <polygon points="13,16 16,13 19,16 16,19" fill="#00f5ff"/>
 </svg>
